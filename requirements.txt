@@ -1,0 +1,11 @@
+bleach==1.4.2
+ckanapi==3.5
+coverage==4.0.3
+-e git+https://github.com/IQSS/dataverse-client-python.git@2a2ad067370065dcfdd2e12af4a6c55aef8b1245#egg=dataverse-master
+docopt==0.6.2
+html5lib==0.9999999
+lxml==3.5.0
+nose==1.3.7
+requests==2.8.1
+simplejson==3.8.1
+six==1.10.0
