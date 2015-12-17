@@ -1,4 +1,6 @@
 ### Collector for IFPRI's Datasets
+[![Build Status](https://travis-ci.org/luiscape/hdxscraper-ifpri-dataverse.svg?branch=master)](https://travis-ci.org/luiscape/hdxscraper-ifpri-dataverse) [![Coverage Status](https://coveralls.io/repos/luiscape/hdxscraper-ifpri-dataverse/badge.svg?branch=master&service=github)](https://coveralls.io/github/luiscape/hdxscraper-ifpri-dataverse?branch=master)
+
 Collector designed to collect datasets from the IFPRI repository on [Harvard's Dataverse](https://dataverse.harvard.edu/dataverse/IFPRI). The collector took into consideration high level classes to make the process of collecting data from a different repository on a Dataverse easier.
 
 ### Usage
