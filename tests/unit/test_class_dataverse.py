@@ -25,10 +25,10 @@ class TestClassDataverse(unittest.TestCase):
     result = Dataverse(host=self.host, alias=self.alias).info()
     self.assertIs(type(result), type({}))
 
-  # def test_content_of_dataverse_returns_correctly(self):
-  #   '''
-  #   classes.dataverse: Tests that the content of a dataverse is returned correctly.
+  def test_content_of_dataverse_returns_correctly(self):
+    '''
+    classes.dataverse: Tests that the content of a dataverse is returned correctly.
 
-  #   '''
-  #   result = Dataverse(host=self.host, alias=self.alias).contents()
-  #   self.assertIs(type(result), type([]))
+    '''
+    result = Dataverse(host=self.host, alias=self.alias).contents()
+    self.assertIs(type(result), type([]))
