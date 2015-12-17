@@ -4,5 +4,12 @@ setup:
 test:
 	bash bin/test.sh;
 
+collect:
+	bash bin/collect.sh;
+
+register:
+	bash bin/register.sh;
+
 run:
-	bash bin/run.sh;
+	bash bin/collect.sh;
+	bash bin/register.sh;
