@@ -22,7 +22,40 @@ class TestParser(unittest.TestCase):
     self.dataset_id = 57641
     self.dataverse = Dataverse(host=self.host, alias=self.alias)
 
-  def test_parser_returns_dataset_and_resource(self):
+    self.metadata_types = {
+      'name': str,
+      'title': str,
+      'owner_org': str,
+      'author': str,
+      'author_email': str,
+      'maintainer': str,
+      'maintainer_email': str,
+      'license_id': str,
+      'license_other': str,
+      'dataset_date': str,
+      'subnational': int,
+      'notes': str,
+      'caveats': type(None),
+      'methodology': str,
+      'methodology_other': type(None),
+      'dataset_source': str,
+      'package_creator': str,
+      'private': bool,
+      'url': type(None),
+      'state': str,
+      'tags': list,
+      'groups': list
+    }
+
+    self.resource_types = {
+      "package_id": str,
+      "url": str,
+      "name": str,
+      "format": str,
+      "description": type(None)
+    }
+
+  def test_parser_returns_metadata_and_resource(self):
     '''
     parser: Tests that both the dataset and the resource objects are returned.
 
@@ -34,3 +67,17 @@ class TestParser(unittest.TestCase):
 
     for key in ['metadata', 'resources']:
       self.assertIn(key, result.keys())
+
+
+  def test_metadata_is_complete(self):
+    '''
+    parser: Tests that the metadata property is complete.
+
+    '''
+    d = Dataset(self.dataset_id).info()
+    result = parse_dataset(d)
+
+    for key in self.metadata_types.keys():
+      print(key)
+      print(result['metadata'][key])
+      self.assertIs(type(result['metadata'][key]), self.metadata_types[key])
