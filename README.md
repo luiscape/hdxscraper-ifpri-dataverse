@@ -17,4 +17,4 @@ If you are interested in also registering datasets on HDX, run:
 $  make register
 ```
 
-You will need to set the environment variable `HDX_KEY` on `bin/run.sh` before running the registering option. That option was created to register datasets on the [Humanitarian Data Exchange](http://data.hdx.rwlabs.org/) project.
+You will need to set the environment variable `HDX_KEY` before running the registering option. That option was created to automatically register datasets on the [Humanitarian Data Exchange](http://data.hdx.rwlabs.org/) project.
