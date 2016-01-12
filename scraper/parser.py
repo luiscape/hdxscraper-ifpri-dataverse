@@ -9,15 +9,6 @@ generate an HDX-like dictionary. It was designed to
 register datasets in HDX in a posterior process.
 
 '''
-
-## 'files' contain the files.
-## country will be inside geospatial > fields > country > value -- will give full name
-##   need to parse into ISO3 codes.
-## title will be in 'fields' > 'typeName':'title'
-## in order to download files, you'll need to append https://dataverse.harvard.edu/api/access/datafile/
-## to all file IDs -- those that have file names.
-## value > dsDescriptionValue contains the description
-
 import os
 import sys
 import json
@@ -26,13 +17,23 @@ import requests
 from copy import copy
 from slugify import slugify
 from datetime import datetime
-from countrycode import countrycode
+from countrycode.countrycode import countrycode
 
-def parse_dataset(data, private=True):
+def parse_dataset(data, private=True, fail_no_country=True):
   '''
   Function that parses a dataset.
 
   '''
+  #
+  #  Check that there is acually
+  #  metadata to parse.
+  #
+  if data.get('latestVersion') is None:
+    raise ValueError('No data to parse.')
+
+  if data['latestVersion']['metadataBlocks'].get('geospatial') is None:
+    raise ValueError('No country entry found.')
+
   resource = {
     "package_id": None,
     "url": None,
@@ -68,6 +69,7 @@ def parse_dataset(data, private=True):
 
   #
   #  Parsing for:
+  #
   #    - metadata name
   #    - metadata title
   #    - metadata dataset_date
@@ -79,7 +81,7 @@ def parse_dataset(data, private=True):
 
     if field.get('typeName') == 'title':
       metadata['title'] = str(field['value'])
-      metadata['name'] = str(slugify(field['value']))
+      metadata['name'] = str(slugify(field['value']))[:90]
 
     if field.get('typeName') == 'timePeriodCovered':
       for f in field['value']:
@@ -91,8 +93,8 @@ def parse_dataset(data, private=True):
     authors = []
     if field.get('typeName') == 'author':
       for f in field['value']:
-        if f.get('value') is not None:
-          authors.append(f.get('value'))
+        if f['authorName'].get('value') is not None:
+          authors.append(f['authorName'].get('value'))
 
       metadata['dataset_source'] = ', '.join(authors)
 
@@ -100,13 +102,20 @@ def parse_dataset(data, private=True):
     if field.get('typeName') == 'dsDescription':
       metadata['notes'] = str(field.get('value')[0].get('dsDescriptionValue').get('value'))
 
-
   for location in data['latestVersion']['metadataBlocks']['geospatial']['fields']:
     if location.get('typeName') == 'geographicCoverage':
-      for country in location.get('value'):
-        name = country[list(country)[0]]['value']
-        result = { 'id': countrycode(codes='Vietnam', origin='country_name', target='iso3c') }
-        metadata['groups'].append(result)
+      for country in location['value']:
+        if country.get('country') is not None:
+          name = country['country'].get('value')
+          code = countrycode(codes=str(name), origin='country_name', target='iso3c')
+          result = { 'id': code.lower() }
+          metadata['groups'].append(result)
+        else:
+          if fail_no_country:
+            raise ValueError('No country entry found.')
+          else:
+            pass
+
 
 
   resources = []

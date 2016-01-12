@@ -28,10 +28,10 @@ def item(key='bullet'):
 
   '''
   dictionary = {
-    'bullet': color(' →', 'blue', attrs=['bold']),
-    'warn': color(' WARN:', 'yellow', attrs=['bold']),
-    'error':  color(' ERROR:', 'red', attrs=['bold']),
-    'success': color(' SUCCESS:', 'green', attrs=['bold'])
+    'bullet': color(u' →', 'blue', attrs=['bold']),
+    'warn': color(u' WARN:', 'yellow', attrs=['bold']),
+    'error':  color(u' ERROR:', 'red', attrs=['bold']),
+    'success': color(u' SUCCESS:', 'green', attrs=['bold'])
   }
 
   return dictionary[key]
