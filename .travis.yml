@@ -6,7 +6,7 @@ python:
 # Command to install dependencies.
 #
 install:
-  - pip install coveralls
+  - pip install coveralls codecov
   - make setup
 
 #
@@ -20,6 +20,7 @@ script:
 #
 after_success:
   - coveralls
+  - codecov
 
 notifications:
     email: false
