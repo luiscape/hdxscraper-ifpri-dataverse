@@ -8,7 +8,7 @@ Use `Makefile` instructions as follows:
 
 ```shell
 $  make setup && make test
-$  make run
+$  make collect
 ```
 
 If you are interested in also registering datasets on HDX, run:
