@@ -190,10 +190,7 @@ def CreateResources(resource_dict, hdx_site, apikey, verbose=True, update_all_da
         if verbose:
           print("%s Creating resource %s" % (I('bullet'), resource["name"]))
 
-        print(json.dumps(resource))
-        print(json.dumps(headers))
         r = requests.post(resource_create_url, data=json.dumps(resource), headers=headers, auth=('dataproject', 'humdata'))
-        print(r.text)
 
 
     #
