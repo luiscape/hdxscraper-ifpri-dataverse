@@ -1,7 +1,7 @@
 {
-  "hdx_site": "https://test-data.hdx.rwlabs.org/",
+  "hdx_site": "https://data.hdx.rwlabs.org/",
   "json_folder": "data",
-  "verbose": true,
+  "verbose": false,
   "delete_resources": false,
   "delete_datasets": false,
   "update_all_datasets": true
