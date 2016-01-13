@@ -67,13 +67,12 @@ def Main():
       return False
 
 
-
 if __name__ == '__main__':
 
   if Main() != False:
-    print('%s UNOSAT Product scraper finished successfully.\n' % I('success'))
+    print('%s IFPRI scraper finished successfully.\n' % I('success'))
     scraperwiki.status('ok')
 
   else:
     scraperwiki.status('error', 'Failed to register resources.')
-    os.system("mail -s 'UNOSAT Flood Portal collector failed' luiscape@gmail.com")
+    os.system("mail -s 'IFPRI scraper collector failed' luiscape@gmail.com")
