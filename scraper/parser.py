@@ -50,8 +50,7 @@ def parse_dataset(data, private=True, fail_no_country=True):
     'author_email': 'ifpri-data@cgiar.org',
     'maintainer': 'ifpridata',
     'maintainer_email': 'ifpri-data@cgiar.org',
-    'license_id': 'hdx-other',
-    'license_other': '',
+    'license_id': 'cc-by-sa',
     'dataset_date': None,  # has to be MM/DD/YYYY
     'subnational': 1,  # has to be 0 or 1. Default 1 for IFPRI.
     'notes': None,
@@ -65,7 +64,7 @@ def parse_dataset(data, private=True, fail_no_country=True):
     'state': 'active',  # always "active".
     'tags': [{ 'name': 'Food' }, { 'name': 'Security' }],  # has to be a list with { 'name': None }
     'groups': []  # has to be ISO-3-letter-code. { 'id': None }
-    }
+  }
 
   #
   #  Parsing for:
