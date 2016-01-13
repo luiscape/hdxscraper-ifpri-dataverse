@@ -19,7 +19,8 @@ class TestParser(unittest.TestCase):
   def setUp(self):
     self.host = 'dataverse.harvard.edu'
     self.alias = 'IFPRI'
-    self.dataset_id = 57641
+    self.dataset_id = 57643
+    self.dataset_error = 57641
     self.dataverse = Dataverse(host=self.host, alias=self.alias)
 
     self.metadata_types = {
@@ -68,6 +69,14 @@ class TestParser(unittest.TestCase):
     for key in ['metadata', 'resources']:
       self.assertIn(key, result.keys())
 
+  def test_value_error_raised_when_metadata_not_present(self):
+    '''
+    parse: Tests that if metadata is not present an exception is raised.
+
+    '''
+    d = Dataset(self.dataset_error).info()
+    with self.assertRaises(ValueError):
+      parse_dataset(d)
 
   def test_metadata_is_complete(self):
     '''
