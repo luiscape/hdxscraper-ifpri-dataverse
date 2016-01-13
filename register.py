@@ -15,13 +15,13 @@ from hdx_register import load, delete, create
 from scraper.utilities.load import LoadConfig
 
 
-def Main():
+def main():
   '''Wrapper'''
 
   #
   # Setting up configuration: dev = development; prod = production.
   #
-  p = LoadConfig('config/dev.json')
+  p = LoadConfig('config/config.json')
   if p is not False:
 
     print('--------------------------------------------------')
@@ -69,7 +69,7 @@ def Main():
 
 if __name__ == '__main__':
 
-  if Main() != False:
+  if main() != False:
     print('%s IFPRI scraper finished successfully.\n' % I('success'))
     scraperwiki.status('ok')
 
