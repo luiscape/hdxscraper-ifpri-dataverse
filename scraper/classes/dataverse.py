@@ -9,6 +9,7 @@ with other objects (i.e. datasets).
 
 '''
 import requests
+from simplejson import JSONDecodeError
 
 class Dataverse(object):
   '''
@@ -36,5 +37,10 @@ class Dataverse(object):
 
     '''
     r = requests.get(self.connection + '/contents')
-    return r.json()['data']
+    try:
+      return r.json()['data']
+
+    except JSONDecodeError:
+      print(r.text)
+      raise ValueError('Could not fetch data from Dataverse.')
 
