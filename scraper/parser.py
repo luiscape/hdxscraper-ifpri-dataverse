@@ -55,6 +55,7 @@ def parse_dataset(data, private=True, fail_no_country=True):
     'subnational': 1,  # has to be 0 or 1. Default 1 for IFPRI.
     'notes': None,
     'caveats': None,
+    'data_update_frequency': '0',
     'methodology': 'Other',
     'methodology_other': None,
     'dataset_source': '',
