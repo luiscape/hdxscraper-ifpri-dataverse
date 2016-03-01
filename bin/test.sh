@@ -4,7 +4,8 @@
 # Run tests with coverage.
 #
 source venv/bin/activate
-nosetests --with-cov \
+nosetests --rednose \
+          --with-cov \
           --no-byte-compile \
           --nologcapture \
           -v
