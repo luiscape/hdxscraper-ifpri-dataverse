@@ -9,6 +9,8 @@ We list all the contents of a particular Dataverse and
 proceed to instantiate its results.
 
 '''
+import scraperwiki
+
 from scraper.parser import parse_dataset
 
 from scraper.utilities.item import item
@@ -58,5 +60,14 @@ def main():
   export_json(resources, 'data/resources.json')
   print('%s Total datasets downloaded %s' % (item('success'), str(len(datasets))))
 
+
 if __name__ == '__main__':
-  main()
+  try:
+    main()
+    print('%s Successfully collected IFPRI data.' % item('success'))
+    scraperwiki.status('ok')
+
+  except Exception as e:
+    print('%s Failed to collected IFPRI data.' % item('error'))
+    print(e)
+    scraperwiki.status('error', 'Failed to collect data.')
