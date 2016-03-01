@@ -13,7 +13,7 @@ class TestUtilityItem(unittest.TestCase):
   '''
   def test_item_returns_correct_type(self):
     '''
-    function.utilities.item: Tests that the item() utility function returns the right type.
+    item() utility function returns the right type.
     '''
     result = item('bullet')
     self.assertIs(type(result), str)

@@ -23,7 +23,7 @@ class TestClassDataset(unittest.TestCase):
 
   def test_dataset_info_is_returned_correctly(self):
     '''
-    classes.dataset: Tests that the dataset information is returned correctly.
+    Dataset information is returned correctly.
 
     '''
     result = Dataset(self.dataset_id).info()
@@ -31,7 +31,7 @@ class TestClassDataset(unittest.TestCase):
 
   def test_dataset_info_returns_error_if_doesnt_exist(self):
     '''
-    classes.dataset: Tests that dataset returns an error message if it doesn't exist.
+    Dataset returns an error message if it doesn't exist.
 
     '''
     result = Dataset(self.dataset_id_error).info()

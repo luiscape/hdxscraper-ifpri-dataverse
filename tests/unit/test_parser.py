@@ -27,12 +27,12 @@ class TestParser(unittest.TestCase):
       'name': str,
       'title': str,
       'owner_org': str,
+      'data_update_frequency': str,
       'author': str,
       'author_email': str,
       'maintainer': str,
       'maintainer_email': str,
       'license_id': str,
-      'license_other': str,
       'dataset_date': str,
       'subnational': int,
       'notes': str,
@@ -58,7 +58,7 @@ class TestParser(unittest.TestCase):
 
   def test_parser_returns_metadata_and_resource(self):
     '''
-    parser: Tests that both the dataset and the resource objects are returned.
+    Dataset and the resource objects are returned.
 
     '''
     d = Dataset(self.dataset_id).info()
@@ -71,7 +71,7 @@ class TestParser(unittest.TestCase):
 
   def test_value_error_raised_when_metadata_not_present(self):
     '''
-    parse: Tests that if metadata is not present an exception is raised.
+    Metadata is not present an exception is raised.
 
     '''
     d = Dataset(self.dataset_error).info()
@@ -80,13 +80,12 @@ class TestParser(unittest.TestCase):
 
   def test_metadata_is_complete(self):
     '''
-    parser: Tests that the metadata property is complete.
+    Metadata property is complete.
 
     '''
     d = Dataset(self.dataset_id).info()
     result = parse_dataset(d)
 
     for key in self.metadata_types.keys():
-      print(key)
-      print(result['metadata'][key])
+      print(result['metadata'])
       self.assertIs(type(result['metadata'][key]), self.metadata_types[key])
