@@ -66,6 +66,15 @@ def parse_dataset(data, private=True, fail_no_country=True):
     'groups': []  # has to be ISO-3-letter-code. { 'id': None }
   }
 
+  gallery = {
+    'title': None,
+    'type': 'paper',
+    'description': None,
+    'url': None,
+    'image_url': 'http://www.ifpri.org/sites/all/themes/custom/serenity/logo.png',  # IFPRI's logo.
+    'dataset_id': None
+  }
+
   #
   #  Parsing for:
   #
